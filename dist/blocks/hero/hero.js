@@ -3,12 +3,45 @@ import Component from "../../vendor/custom-elements-jsx/component.js";
 
 class HelixHero extends Component {
   render() {
+    const scrollTo = e => {
+      e.stopPropagation();
+      let {
+        target
+      } = e;
+
+      while (target.tagName.toLowerCase() !== 'a' && target.tagName.toLowerCase() !== 'button') {
+        console.log(target.tagName.toLowerCase());
+        target = target.parentNode;
+      }
+
+      const direction = (target.href || target.className).replace(/.*[-#]/, '');
+      this.current = this.current || +(window.location.hash || "#slide1").replace(/[^\d]/g, '');
+
+      switch (direction) {
+        case 'prev':
+          this.current--;
+          break;
+
+        case 'next':
+          this.current++;
+          break;
+
+        default:
+          this.current = +direction.replace(/[^\d]/g, '');
+          break;
+      }
+
+      this.current = Math.min(Math.max(this.current, 1), this.querySelectorAll(':scope  > div > div.hero-2-slider > div').length);
+      document.getElementById(`slide${this.current}`).scrollIntoViewIfNeeded(false);
+    };
+
     return jsx("div", {
       class: "hero-2 js-hero-2"
     }, jsx("div", {
       class: "hero-2-slider js-hero-2-slider"
     }, jsx("div", {
-      class: "hero-2-slide"
+      class: "hero-2-slide",
+      id: "slide1"
     }, jsx("div", {
       class: "hero-2-container container"
     }, jsx("div", {
@@ -36,7 +69,8 @@ class HelixHero extends Component {
         backgroundImage: `url(img/bg-image-3.jpg)`
       }
     }))), jsx("div", {
-      class: "hero-2-slide"
+      class: "hero-2-slide",
+      id: "slide2"
     }, jsx("div", {
       class: "hero-2-container container"
     }, jsx("div", {
@@ -64,7 +98,8 @@ class HelixHero extends Component {
         backgroundImage: `url(img/bg-image-1.jpg)`
       }
     }))), jsx("div", {
-      class: "hero-2-slide"
+      class: "hero-2-slide",
+      id: "slide3"
     }, jsx("div", {
       class: "hero-2-container container"
     }, jsx("div", {
@@ -98,6 +133,7 @@ class HelixHero extends Component {
     }, jsx("div", {
       class: "hero-2-arrows arrows arrows_sm"
     }, jsx("button", {
+      onClick: scrollTo,
       class: "arrows-item js-hero-2-prev"
     }, jsx("svg", {
       class: "icon icon-arrow-left",
@@ -106,6 +142,7 @@ class HelixHero extends Component {
     }, jsx("path", {
       d: "M5 6.9c.4.4.4 1 0 1.4h0c-.4.4-1 .4-1.4 0L.3 5a1 1 0 0 1 0-1.4L3.6.3A1 1 0 0 1 5 .3h0a1 1 0 0 1 0 1.4L3.4 3.3H17a1 1 0 0 1 1 1h0a1 1 0 0 1-1 1H3.4L5 6.9z"
     }))), jsx("button", {
+      onClick: scrollTo,
       class: "arrows-item js-hero-2-next"
     }, jsx("svg", {
       class: "icon icon-arrow-right",
@@ -125,12 +162,13 @@ class HelixHero extends Component {
       class: "hero-2-posts"
     }, jsx("a", {
       class: "hero-2-post",
-      href: "#"
+      href: "#slide2",
+      onClick: scrollTo
     }, jsx("div", {
       class: "hero-2-preview"
     }, jsx("img", {
       class: "hero-2-pic",
-      src: "img/image-5.jpg",
+      src: "img/bg-image-1.jpg",
       alt: "Image 5"
     })), jsx("div", {
       class: "hero-2-details"
@@ -139,14 +177,15 @@ class HelixHero extends Component {
       href: "#"
     }, "Design"), jsx("div", {
       class: "hero-2-content content"
-    }, "Artechnic brings life to a concrete Tokyo"))), jsx("a", {
+    }, "Make it simple but significant"))), jsx("a", {
       class: "hero-2-post",
-      href: "#"
+      href: "#slide3",
+      onClick: scrollTo
     }, jsx("div", {
       class: "hero-2-preview"
     }, jsx("img", {
       class: "hero-2-pic",
-      src: "img/image-6.jpg",
+      src: "img/bg-image-10.jpg",
       alt: "Image 6"
     })), jsx("div", {
       class: "hero-2-details"
@@ -155,7 +194,7 @@ class HelixHero extends Component {
       href: "#"
     }, "Health"), jsx("div", {
       class: "hero-2-content content"
-    }, "The Health Benefits of Indoor Plants Are Pretty")))))));
+    }, "Yeezy Boost 350 V2 Clay")))))));
   }
 
 }

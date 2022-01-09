@@ -1,0 +1,22 @@
+helix-hero > div > div.hero-2-slider {
+  display: flex;
+  
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  
+  
+  
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+helix-hero > div > div.hero-2-slider > div {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100vw;
+  height: 720px;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+}
