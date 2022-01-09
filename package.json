@@ -1,0 +1,31 @@
+{
+  "name": "schulgartenfibel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d dist --delete-dir-on-start"
+  },
+  "source": [
+    "src/blocks/*/*.jsx"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trieloff/schulgartenfibel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trieloff/schulgartenfibel/issues"
+  },
+  "homepage": "https://github.com/trieloff/schulgartenfibel#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.16.7",
+    "@babel/plugin-syntax-jsx": "^7.16.7",
+    "@babel/plugin-transform-react-jsx": "^7.16.7"
+  },
+  "dependencies": {
+    "custom-elements-jsx": "^2.0.1"
+  }
+}
