@@ -3,14 +3,14 @@ import Component from "../../vendor/custom-elements-jsx/component.js";
 
 class CustomHeader extends Component {
   render() {
-    console.log(this);
+    const header = this;
     return jsx("div", {
       class: "header-container container"
     }, jsx("div", {
       class: "header-left"
     }, jsx("button", {
       class: "header-action",
-      "data-menu-open": true
+      onClick: header.showMenu
     }, jsx("svg", {
       class: "icon icon-grid",
       xmlns: "http://www.w3.org/2000/svg",
@@ -68,6 +68,16 @@ class CustomHeader extends Component {
       src: "img/user-1.jpg",
       alt: "User"
     }))));
+  }
+
+  showMenu(e) {
+    e.stopPropagation();
+    document.querySelector('custom-menu .js-menu').classList.add('visible');
+    console.log(e, 'showMenu');
+  }
+
+  componentDidMount() {
+    console.log('Header mounted', this.querySelector('button'));
   }
 
 }

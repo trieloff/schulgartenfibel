@@ -4,11 +4,12 @@ import Component from "../../vendor/custom-elements-jsx/component.js";
 
 class CustomMenu extends Component {
   render() {
+    const closeMenu = this.closeMenu.bind(this);
     return (
       <div class="menu-2 js-menu">
         <header class="header">
           <div class="header-container container">
-            <div class="header-left"><button class="header-action" data-menu-close><svg class="icon icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
+            <div class="header-left"><button class="header-action" onClick={closeMenu}><svg class="icon icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
               <path d="M13.4.6a1 1 0 0 1 0 1.4l-5 5 5 5c.4.4.4.9.1 1.3v.1a1 1 0 0 1-1.4 0l-5-5-5 5c-.4.4-.9.4-1.3.1H.6a1 1 0 0 1 0-1.4l5-5-5-5C.3 1.7.2 1.1.6.7V.6A1 1 0 0 1 2 .6l5 5 5-5c.4-.4.9-.4 1.3-.1h.1z" /></svg></button></div>
             <div class="header-center"><a class="header-logo" href="/"><img class="header-pic" src="img/kalli-black.svg" width="56" alt="Kalli"></img></a></div>
             <div class="header-right"><button class="header-action"><svg class="icon icon-search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
@@ -39,6 +40,15 @@ class CustomMenu extends Component {
         <div class="menu-2-bg" style="background-image: url(img/bg-image-24.jpg)"></div>
       </div>
     );
+  }
+
+  closeMenu(e) {
+    e.stopPropagation();
+    this.querySelector(':scope div').classList.remove('visible')
+  }
+
+  componentDidMount() {
+    console.log('Menu mounted', this.querySelector('[data-menu-close]'));
   }
 }
 

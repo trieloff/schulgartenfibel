@@ -29,6 +29,7 @@ const addAttributes = (element, attrs = {}) => {
       const regexp = /^(on[a-z]+)$/i;
 
       if (regexp.test(eventName)) {
+        console.log('binding on... to', element);
         element[eventName] = propValue;
       }
 

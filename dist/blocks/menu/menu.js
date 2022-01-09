@@ -3,6 +3,7 @@ import Component from "../../vendor/custom-elements-jsx/component.js";
 
 class CustomMenu extends Component {
   render() {
+    const closeMenu = this.closeMenu.bind(this);
     return jsx("div", {
       class: "menu-2 js-menu"
     }, jsx("header", {
@@ -13,7 +14,7 @@ class CustomMenu extends Component {
       class: "header-left"
     }, jsx("button", {
       class: "header-action",
-      "data-menu-close": true
+      onClick: closeMenu
     }, jsx("svg", {
       class: "icon icon-close",
       xmlns: "http://www.w3.org/2000/svg",
@@ -124,6 +125,15 @@ class CustomMenu extends Component {
       class: "menu-2-bg",
       style: "background-image: url(img/bg-image-24.jpg)"
     }));
+  }
+
+  closeMenu(e) {
+    e.stopPropagation();
+    this.querySelector(':scope div').classList.remove('visible');
+  }
+
+  componentDidMount() {
+    console.log('Menu mounted', this.querySelector('[data-menu-close]'));
   }
 
 }
